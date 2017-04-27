@@ -98,9 +98,9 @@ void BinaryTree::PrintHelper(Node * Tree)
       // Print node value
       cout << " " << Tree->Value << " ";
 
-      cout << ")";
       // Print right subtree
       PrintHelper(Tree->Right);
+      cout << ")";
    }
 }
 
@@ -116,40 +116,36 @@ void BinaryTree::Print()
 
 int BinaryTree::Count()
 {
- int count = 0;
- CountHelper(Root, count);
- return count;
+ return CountHelper(Root);
 }
 
-void BinaryTree::CountHelper(Node * Tree, int &count)
+int BinaryTree::CountHelper(Node * Tree)
 {
  if(Tree != NULL)
  {
-  count++;
-  CountHelper(Tree->Left, count);
-  CountHelper(Tree->Right, count);
+  return 1 + CountHelper(Tree->Left) + CountHelper(Tree->Right);
  }
 }
 
 int BinaryTree::Height()
 {
- int height = 0;
- HeightHelper(Root, height);
- return height;
+ return HeightHelper(Root);
 }
 
-void BinaryTree::HeightHelper(Node * Tree, int &height)
+int max(int a, int b)
+{
+ if(a > b)
+  return a;
+ else
+  return b;
+}
+
+int BinaryTree::HeightHelper(Node * Tree)
 {
  if(Tree != NULL)
- {
-  if(Tree->Left != NULL || Tree->Right != NULL)
-  {
-    height++;
-  }
-
-  HeightHelper(Tree->Left, height);
-  HeightHelper(Tree->Right, height);
- }
+  return 1 + max(HeightHelper(Tree->Left), HeightHelper(Tree->Right));
+ else
+  return 0;
 }
 
 //-----------------------------------------------------------
@@ -164,8 +160,9 @@ int main()
     tree.Insert(rand() % 1024);
   }
 
-  //tree.Print();
-  cout << tree.Height() << endl;
+  tree.Print();
+
+  cout << "height: " << tree.Height() << endl;
 
   BinaryTree tree2;
 
@@ -174,7 +171,9 @@ int main()
     tree2.Insert(z);
   }
 
-  cout << tree2.Height() << endl;
+  tree2.Print();
+
+  cout << "height: "<< tree2.Height() << endl;
 
 }
 
