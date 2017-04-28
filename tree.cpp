@@ -122,22 +122,14 @@ int BinaryTree::Count()
 int BinaryTree::CountHelper(Node * Tree)
 {
  if(Tree != NULL)
- {
   return 1 + CountHelper(Tree->Left) + CountHelper(Tree->Right);
- }
+ else
+  return 0;
 }
 
 int BinaryTree::Height()
 {
  return HeightHelper(Root);
-}
-
-int max(int a, int b)
-{
- if(a > b)
-  return a;
- else
-  return b;
 }
 
 int BinaryTree::HeightHelper(Node * Tree)
