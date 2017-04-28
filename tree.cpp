@@ -167,5 +167,19 @@ int main()
 
   cout << "height: "<< tree2.Height() << endl;
 
+  BinaryTree tree3;
+
+  cout << "height (empty): " << tree3.Height() << endl;
+  cout << "count (empty): " << tree3.Count() << endl;
+
+  for(int z = 0;z < 5;z++)
+  {
+    tree3.Insert(rand() % 100);
+    cout << "height (" << z + 1 << " inserted): " << tree3.Height() << endl;
+    cout << "count (" << z + 1 << " inserted): " << tree3.Count() << endl;
+
+  }
+
+  tree3.Print();
 }
 
